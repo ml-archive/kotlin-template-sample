@@ -19,11 +19,6 @@ android {
         versionName "2.0.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        compileOptions {
-            sourceCompatibility 1.8
-            targetCompatibility 1.8
-        }
-
         manifestPlaceholders = [
                 appId : keys.appId,
                 apiKey: keys.apiKey
@@ -90,6 +85,14 @@ android {
             buildConfigField "String", "API_URL", "\"https://jsonplaceholder.typicode.com\""
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 repositories {
@@ -105,12 +108,12 @@ dependencies {
     implementation project (':domain')
     implementation project (':presentation')
     implementation project (':data')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
     implementation "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlin}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation "androidx.appcompat:appcompat:$versions.appcompat"
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation "com.google.android.material:material:$versions.material"
     implementation 'androidx.cardview:cardview:1.0.0'
@@ -132,7 +135,7 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
 
     implementation "dk.nodes.nstack:nstack-kotlin:${versions.nodes_nstack_kotlin}"
-    implementation "dk.nodes.arch:base:${versions.nodes_arch}"
+//    implementation "dk.nodes.arch:base:${versions.nodes_arch}"
 
     implementation "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
 
@@ -163,4 +166,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata:${versions.lifecycle}"
     kapt "androidx.lifecycle:lifecycle-compiler:${versions.lifecycle}"
     implementation "androidx.core:core-ktx:${versions.ktx}"
+
+    implementation "androidx.preference:preference-ktx:1.1.0"
 }
