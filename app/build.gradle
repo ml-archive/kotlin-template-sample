@@ -70,7 +70,7 @@ android {
                     HOCKEYAPP_APP_ID: hockeyAppId,
                     APP_NAME        : "KotlinTemplateStaging"
             ]
-            buildConfigField "String", "API_URL", "\"https://jsonplaceholder.typicode.com\""
+            buildConfigField "String", "API_URL", "\"https://gateway.marvel.com/v1/public/\""
         }
         production {
             dimension "default"
@@ -82,7 +82,7 @@ android {
                     HOCKEYAPP_APP_ID: hockeyAppId,
                     APP_NAME        : "KotlinTemplate"
             ]
-            buildConfigField "String", "API_URL", "\"https://jsonplaceholder.typicode.com\""
+            buildConfigField "String", "API_URL", "\"https://gateway.marvel.com/v1/public/\""
         }
     }
 

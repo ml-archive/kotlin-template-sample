@@ -21,6 +21,8 @@ class RestPostRepository @Inject constructor(private val api: Api) : PostReposit
     }
 
     override suspend fun getPosts(): List<Post> {
+        val test = api.getComics()
+
         val response = api.getPosts()
         if (response.isSuccessful) {
             return response.body()?.also { postsChannel.send(it) }

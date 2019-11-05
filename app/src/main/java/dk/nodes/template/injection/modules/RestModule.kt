@@ -4,13 +4,14 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
-import dk.nodes.nstack.kotlin.providers.NMetaInterceptor
 import dk.nodes.template.BuildConfig
 import dk.nodes.template.network.Api
+import dk.nodes.template.network.util.AuthInterceptor
 import dk.nodes.template.network.util.BufferedSourceConverterFactory
 import dk.nodes.template.network.util.DateDeserializer
 import dk.nodes.template.network.util.ItemTypeAdapterFactory
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -61,11 +62,11 @@ class RestModule {
             .connectTimeout(45, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
-            .addInterceptor(NMetaInterceptor(BuildConfig.BUILD_TYPE))
+            .addInterceptor(AuthInterceptor())
 
         if (BuildConfig.DEBUG) {
-            val logging = okhttp3.logging.HttpLoggingInterceptor()
-            logging.level = okhttp3.logging.HttpLoggingInterceptor.Level.BODY
+            val logging = HttpLoggingInterceptor()
+            logging.level = HttpLoggingInterceptor.Level.BODY
             clientBuilder.addInterceptor(logging)
         }
 
