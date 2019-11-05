@@ -5,7 +5,8 @@ import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.ui.shared.EntityAdapter
 import kotlinx.android.synthetic.main.row_sample.view.*
 
-class ComicsAdapter : EntityAdapter<ComicEntity>(R.layout.row_sample, {
-    titleTv.text = it.title
-    bodyTv.text = it.description
-})
+class ComicsAdapter : EntityAdapter<ComicEntity>(R.layout.row_sample,
+    { entity ->
+        titleTv.text = entity.title
+        bodyTv.text = entity.description
+    })

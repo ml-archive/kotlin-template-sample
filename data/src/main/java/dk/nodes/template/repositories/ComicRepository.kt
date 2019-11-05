@@ -12,18 +12,29 @@ class ComicRepository @Inject constructor(
     private val localDataSource: ComicDao
 ) {
     suspend fun getComics(offset: Int, limit: Int): List<ComicEntity> {
+        getComicById(100)
+
         return remoteDataSource.getComics(offset, limit)
             .body()!!.data.results
             .map(ComicMapper::mapToEntity)
     }
 
     suspend fun insert(list: List<ComicEntity>) {
-        localDataSource.insert(*list.toTypedArray())
+        localDataSource.insertOrIgnore(*list.toTypedArray())
     }
 
     fun all(): Flow<List<ComicEntity>> = localDataSource.comics()
 
     suspend fun getComicById(id: Long): ComicEntity? {
         return localDataSource.getComicById(id)
+            ?: getComicByIdRemoteSource(id)?.also { localDataSource.insert(it) }
+    }
+
+    private suspend fun getComicByIdRemoteSource(id: Long): ComicEntity? {
+        return ComicMapper.mapToEntity(
+            remoteDataSource.getComicById(id)
+                .body()!!
+                .data.results.firstOrNull() ?: return null
+        )
     }
 }

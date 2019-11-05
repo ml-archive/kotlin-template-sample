@@ -1,7 +1,6 @@
 package dk.nodes.template.network
 
 import dk.nodes.template.models.dto.ComicsResponse
-import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -15,5 +14,5 @@ interface ComicApi {
     ): Response<ComicsResponse>
 
     @GET("comics/{comicId}")
-    suspend fun getComicById(@Path("comicId") comicId: Long): Response<ResponseBody>
+    suspend fun getComicById(@Path("comicId") comicId: Long): Response<ComicsResponse>
 }
