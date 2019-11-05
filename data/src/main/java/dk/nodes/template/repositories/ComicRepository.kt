@@ -18,8 +18,12 @@ class ComicRepository @Inject constructor(
     }
 
     suspend fun insert(list: List<ComicEntity>) {
-        localDataSource.insert(list)
+        localDataSource.insert(*list.toTypedArray())
     }
 
     fun all(): Flow<List<ComicEntity>> = localDataSource.comics()
+
+    suspend fun getComicById(id: Long): ComicEntity? {
+        return localDataSource.getComicById(id)
+    }
 }
