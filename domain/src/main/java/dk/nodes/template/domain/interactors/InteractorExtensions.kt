@@ -12,8 +12,12 @@ import kotlin.coroutines.CoroutineContext
 
 interface ResultInteractor<I, O> : Interactor<I, CompleteResult<O>>
 
-interface FlowInteractor<I, O> : NoOutputInteractor<I> {
-    fun flow(): Flow<O>
+abstract class FlowInteractor<I, O> : ResultInteractor<I, Unit> {
+    abstract fun flow(): Flow<O>
+    protected abstract suspend fun run(input: I)
+    override suspend fun invoke(input: I): CompleteResult<Unit> {
+        return wrapAsResult { run(input) }
+    }
 }
 
 private class ResultInteractorImpl<I, O>(private val interactor: Interactor<I, out O>) :
@@ -28,7 +32,10 @@ private class ResultInteractorImpl<I, O>(private val interactor: Interactor<I, o
 }
 
 private class FlowInteractorImpl<I, O>(private val interactor: Interactor<I, out O>) :
-    FlowInteractor<I, InteractorResult<O>> {
+    FlowInteractor<I, InteractorResult<O>>() {
+    override suspend fun run(input: I) {
+        interactor(input)
+    }
 
     private val channel = BroadcastChannel<InteractorResult<O>>(Channel.CONFLATED).also {
         it.offer(Uninitialized)
@@ -38,12 +45,13 @@ private class FlowInteractorImpl<I, O>(private val interactor: Interactor<I, out
         return channel.asFlow()
     }
 
-    override suspend fun invoke(input: I) {
+    override suspend fun invoke(input: I): CompleteResult<Unit> {
         channel.offer(Loading())
-        try {
-            channel.offer(Success(interactor(input)))
+        return try {
+            channel.send(Success(interactor(input)))
+            Success(Unit)
         } catch (t: Throwable) {
-            channel.offer(Fail(t))
+            Fail(t).also { channel.send(it) }
         }
     }
 }
@@ -86,14 +94,14 @@ suspend fun <O> runInteractor(
     return withContext(coroutineContext) { interactor.invoke() }
 }
 
-fun <T, R> InteractorResult<T>.isSuccess(block: (T) -> R): InteractorResult<T> {
+inline fun <T, R> InteractorResult<T>.isSuccess(block: (T) -> R): InteractorResult<T> {
     if (this is Success) {
         block(this.data)
     }
     return this
 }
 
-fun <T, R> InteractorResult<T>.isError(block: (throwable: Throwable) -> R): InteractorResult<T> {
+inline fun <T, R> InteractorResult<T>.isError(block: (throwable: Throwable) -> R): InteractorResult<T> {
     if (this is Fail) {
         block(this.throwable)
     }

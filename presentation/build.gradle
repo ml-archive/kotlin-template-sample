@@ -70,4 +70,6 @@ dependencies {
 
     implementation "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
     implementation "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
+
+    implementation "androidx.constraintlayout:constraintlayout:${versions.constraint_layout}"
 }

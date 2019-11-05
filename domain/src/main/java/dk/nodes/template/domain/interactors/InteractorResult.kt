@@ -19,3 +19,12 @@ data class Success<out T>(val data: T) : CompleteResult<T>()
 data class Fail(val throwable: Throwable) : CompleteResult<Nothing>()
 object Uninitialized : IncompleteResult<Nothing>()
 class Loading<out T> : IncompleteResult<T>()
+
+suspend fun wrapAsResult(block: suspend () -> Unit): CompleteResult<Unit> {
+    return try {
+        block()
+        Success(Unit)
+    } catch (t: Throwable) {
+        Fail(t)
+    }
+}

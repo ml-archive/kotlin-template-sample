@@ -6,6 +6,7 @@ import dagger.android.support.DaggerFragment
 import dk.nodes.template.presentation.extensions.getSharedViewModel
 import dk.nodes.template.presentation.extensions.getViewModel
 import dk.nodes.template.presentation.extensions.lifecycleAwareLazy
+import dk.nodes.template.presentation.util.ViewError
 import dk.nodes.template.presentation.util.ViewErrorController
 import javax.inject.Inject
 

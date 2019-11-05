@@ -6,7 +6,6 @@ import dk.nodes.template.domain.interactors.InteractorResult
 import dk.nodes.template.domain.interactors.Loading
 import dk.nodes.template.domain.interactors.PostFlowInteractor
 import dk.nodes.template.domain.interactors.Success
-import dk.nodes.template.domain.interactors.asResult
 import dk.nodes.template.domain.interactors.runInteractor
 import dk.nodes.template.presentation.ui.base.BaseViewModel
 import dk.nodes.template.presentation.util.SingleEvent
@@ -33,7 +32,7 @@ class SampleViewModel @Inject constructor(
     fun fetchPosts() {
         viewModelScope.launch(Dispatchers.Main) {
             state = mapResult(Loading())
-            val result = runInteractor(postsInteractor.asResult())
+            val result = runInteractor(postsInteractor)
             state = mapResult(result)
         }
     }
