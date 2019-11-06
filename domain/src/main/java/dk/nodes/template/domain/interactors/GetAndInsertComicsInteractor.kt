@@ -8,12 +8,11 @@ class GetAndInsertComicsInteractor @Inject constructor(
     private val comicRepository: ComicRepository
 ) : FlowInteractor<GetAndInsertComicsInteractor.Input, List<ComicEntity>>() {
     override suspend fun run(input: Input) {
-        comicRepository.insert(
-            comicRepository.getComics(
-                input.offset,
-                input.limit
-            )
+        val comics = comicRepository.getComics(
+            input.offset,
+            input.limit
         )
+        comicRepository.insert(comics)
     }
 
     data class Input(

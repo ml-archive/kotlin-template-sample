@@ -27,7 +27,8 @@ buildscript {
             archCore           : '2.1.0',
             navigation         : '2.1.0',
             appcompat          : '1.1.0',
-            room               : '2.2.1'
+            room               : '2.2.1',
+            glide              : '4.10.0',
     ]
 
     ext.keys = [
@@ -55,6 +56,8 @@ buildscript {
         classpath "dk.nodes.nstack:translation:${versions.nstack_plugin}"
         classpath "com.github.gfx.ribbonizer:ribbonizer-plugin:2.1.0"
         classpath "dk.nodes.ci:bitrise:1.0"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
+
     }
 }
 

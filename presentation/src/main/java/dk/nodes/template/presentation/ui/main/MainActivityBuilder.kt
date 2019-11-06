@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import dk.nodes.template.presentation.injection.ViewModelKey
+import dk.nodes.template.presentation.ui.comicdetail.ComicDetailBuilder
 import dk.nodes.template.presentation.ui.comics.ComicsBuilder
 import dk.nodes.template.presentation.ui.sample.SampleBuilder
 
@@ -20,7 +21,8 @@ internal abstract class MainActivityBuilder {
     @ContributesAndroidInjector(
         modules = [
             SampleBuilder::class,
-            ComicsBuilder::class
+            ComicsBuilder::class,
+            ComicDetailBuilder::class
         ]
     )
     internal abstract fun mainActivity(): MainActivity

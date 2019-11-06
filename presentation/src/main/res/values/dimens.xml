@@ -10,5 +10,6 @@
     <dimen name="margin_medium">8dp</dimen>
     <dimen name="margin_big">12dp</dimen>
     <dimen name="margin_large">16dp</dimen>
+    <dimen name="textSizeLarge">22sp</dimen>
 
 </resources>

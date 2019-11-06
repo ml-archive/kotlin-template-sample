@@ -24,7 +24,6 @@ interface EntityDao<E : DomainEntity> {
     @Insert
     suspend fun insert(vararg obj: E)
 
-
     /**
      * Insert an array of objects in the database, ignore in case entity is
      * already in the database.

@@ -92,3 +92,7 @@ class ViewErrorController @Inject constructor(val context: Context) {
         }
     }
 }
+
+fun Throwable.toViewError(): ViewError {
+    return ViewErrorController.mapThrowable(this)
+}

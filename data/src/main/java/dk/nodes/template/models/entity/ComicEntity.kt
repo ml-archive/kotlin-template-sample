@@ -12,4 +12,4 @@ data class ComicEntity(
     val thumbnailPath: String,
     val pageCount: Int,
     val price: Float
-): DomainEntity
+) : DomainEntity

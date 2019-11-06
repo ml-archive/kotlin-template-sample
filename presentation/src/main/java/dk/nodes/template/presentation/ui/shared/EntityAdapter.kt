@@ -57,5 +57,5 @@ open class EntityAdapter<E : DomainEntity>(
         }
     }
 
-    private inner class ViewHolder(view: View): RecyclerView.ViewHolder(view)
+    private inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 }

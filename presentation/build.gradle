@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'dk.nstack.translation.plugin'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 translation {
     appId = keys.appId
@@ -72,4 +73,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
 
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraint_layout}"
+
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    kapt "com.github.bumptech.glide:compiler:$versions.glide"
 }
