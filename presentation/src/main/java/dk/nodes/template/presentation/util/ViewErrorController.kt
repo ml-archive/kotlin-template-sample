@@ -31,7 +31,7 @@ class ViewErrorController @Inject constructor(val context: Context) {
 
     fun showErrorSnackbar(view: View, error: ViewError, showAction: Boolean = false, dismissAction: (() -> Unit)? = null) {
         val showLength = if (showAction) Snackbar.LENGTH_INDEFINITE else Snackbar.LENGTH_LONG
-        val snackbar = Snackbar.make(view, error.message ?: Translation.error.errorRandom, showLength)
+        val snackbar = Snackbar.make(view, error.message, showLength)
         if (showAction) {
             snackbar.setAction(Translation.defaultSection.ok) {
                 isShowingError = false

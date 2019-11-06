@@ -3,18 +3,14 @@ package dk.nodes.template.network
 import dk.nodes.template.models.Post
 import dk.nodes.template.repositories.PostRepository
 import dk.nodes.template.repositories.RepositoryException
-import kotlinx.coroutines.channels.BroadcastChannel
-import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import javax.inject.Inject
 
 class RestPostRepository @Inject constructor(private val api: Api) : PostRepository {
 
-    private val postsChannel = BroadcastChannel<List<Post>>(Channel.CONFLATED)
-        .also {
-            it.offer(listOf())
-        }
+    private val postsChannel = ConflatedBroadcastChannel<List<Post>>(listOf())
 
     override fun getPostsFlow(): Flow<List<Post>> {
         return postsChannel.asFlow()

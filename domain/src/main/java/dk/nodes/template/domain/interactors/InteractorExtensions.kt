@@ -2,8 +2,7 @@ package dk.nodes.template.domain.interactors
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.BroadcastChannel
-import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.launch
@@ -37,9 +36,7 @@ private class FlowInteractorImpl<I, O>(private val interactor: Interactor<I, out
         interactor(input)
     }
 
-    private val channel = BroadcastChannel<InteractorResult<O>>(Channel.CONFLATED).also {
-        it.offer(Uninitialized)
-    }
+    private val channel = ConflatedBroadcastChannel<InteractorResult<O>>(Uninitialized)
 
     override fun flow(): Flow<InteractorResult<O>> {
         return channel.asFlow()

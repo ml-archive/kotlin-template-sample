@@ -1,15 +1,20 @@
 package dk.nodes.template.presentation.ui.comics
 
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import dk.nodes.template.models.entity.ComicEntity
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.ui.shared.EntityAdapter
-import kotlinx.android.synthetic.main.row_sample.view.*
+import kotlinx.android.synthetic.main.row_comic.view.*
 
 class ComicsAdapter(private val onComicClick: (ComicEntity) -> Unit) :
-    EntityAdapter<ComicEntity>(R.layout.row_sample,
+    EntityAdapter<ComicEntity>(R.layout.row_comic,
         { entity ->
-            titleTv.text = entity.title
-            bodyTv.text = entity.description
+            Glide.with(comicRowIv)
+                .load(entity.thumbnailPath)
+                .apply(RequestOptions.fitCenterTransform())
+                .into(comicRowIv)
+            comicRowTitleTv.text = entity.title
             setOnClickListener {
                 onComicClick(entity)
             }

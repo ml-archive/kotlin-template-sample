@@ -11,5 +11,6 @@
     <dimen name="margin_big">12dp</dimen>
     <dimen name="margin_large">16dp</dimen>
     <dimen name="textSizeLarge">22sp</dimen>
+    <dimen name="maxThumbnailSize">100dp</dimen>
 
 </resources>

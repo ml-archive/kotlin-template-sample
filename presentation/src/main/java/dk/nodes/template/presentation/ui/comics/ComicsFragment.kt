@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
@@ -38,9 +38,9 @@ class ComicsFragment : BaseFragment() {
             )
         }.also(comicsRv::setAdapter)
 
-        comicsRv.layoutManager = LinearLayoutManager(context).also { linearLayoutManager ->
+        comicsRv.layoutManager = GridLayoutManager(context, 2).also { layoutManager ->
             comicsRv.addOnScrollListener(object :
-                EndlessRecyclerViewScrollListener(linearLayoutManager) {
+                EndlessRecyclerViewScrollListener(layoutManager) {
                 override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                     viewModel.loadMore(totalItemsCount)
                 }

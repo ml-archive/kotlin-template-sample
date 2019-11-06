@@ -12,10 +12,8 @@ class ComicRepository @Inject constructor(
     private val localDataSource: ComicDao
 ) {
     suspend fun getComics(offset: Int, limit: Int): List<ComicEntity> {
-        getComicById(100)
-
-        return remoteDataSource.getComics(offset, limit)
-            .body()!!.data.results
+        return remoteDataSource.getComicsCollection(offset = offset, limit = limit)
+            .body()!!.data!!.results!!
             .map(ComicMapper::mapToEntity)
     }
 
@@ -32,9 +30,9 @@ class ComicRepository @Inject constructor(
 
     private suspend fun getComicByIdRemoteSource(id: Long): ComicEntity? {
         return ComicMapper.mapToEntity(
-            remoteDataSource.getComicById(id)
+            remoteDataSource.getComicIndividual(id)
                 .body()!!
-                .data.results.firstOrNull() ?: return null
+                .data?.results?.firstOrNull() ?: return null
         )
     }
 }
