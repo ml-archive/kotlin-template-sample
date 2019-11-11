@@ -5,7 +5,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
-import dk.nodes.template.presentation.injection.ViewModelKey
+import dk.nodes.arch.injection.ViewModelKey
 
 @Module
 abstract class ComicDetailBuilder {

@@ -26,16 +26,16 @@ interface CharacterApi {
     @GET("characters/{characterId}/events")
     suspend fun getCharacterEventsCollection(
         @Path("characterId") characterId: Int,
-        @Query("name") name: String,
-        @Query("nameStartsWith") nameStartsWith: String,
-        @Query("modifiedSince") modifiedSince: String,
-        @Query("creators") creators: Array<Int>,
-        @Query("series") series: Array<Int>,
-        @Query("comics") comics: Array<Int>,
-        @Query("stories") stories: Array<Int>,
-        @Query("orderBy") orderBy: Array<String>,
-        @Query("limit") limit: Int,
-        @Query("offset") offset: Int
+        @Query("name") name: String? = null,
+        @Query("nameStartsWith") nameStartsWith: String? = null,
+        @Query("modifiedSince") modifiedSince: String? = null,
+        @Query("creators") creators: Array<Int>? = null,
+        @Query("series") series: Array<Int>? = null,
+        @Query("comics") comics: Array<Int>? = null,
+        @Query("stories") stories: Array<Int>? = null,
+        @Query("orderBy") orderBy: Array<String>? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("offset") offset: Int? = null
     ): Response<ResponseBody>
 
     /**

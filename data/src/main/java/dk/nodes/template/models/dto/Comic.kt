@@ -97,7 +97,7 @@ data class Comic(
     val collectedIssues: List<Any>? = null,
 
     /* A list of key dates for this comic. */
-    val dates: List<String>? = null,
+    val dates: List<Map<String, String>>? = null,
 
     /* A list of prices for this comic. */
     val prices: List<ComicPrice>? = null,

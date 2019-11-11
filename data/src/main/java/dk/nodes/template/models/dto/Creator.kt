@@ -30,6 +30,8 @@ data class Creator(
     /* The last name of the creator. */
     val lastName: String? = null,
 
+    val name: String? = null,
+
     /* The suffix or honorific for the creator. */
     val suffix: String? = null,
 
@@ -58,5 +60,7 @@ data class Creator(
     val comics: ComicList? = null,
 
     /* A resource list containing the events which feature work by this creator. */
-    val events: EventList? = null
+    val events: EventList? = null,
+
+    val role: String? = null
 )

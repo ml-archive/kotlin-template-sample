@@ -19,7 +19,7 @@ object ComicMapper : EntityMapper<ComicEntity, Comic> {
                 if (i > 0) {
                     builder.append(", ")
                 }
-                builder.append(item.fullName!!)
+                item.name?.let(builder::append)
             }
         } else {
             builder.append("-")
