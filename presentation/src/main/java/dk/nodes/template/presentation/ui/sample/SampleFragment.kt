@@ -5,16 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import dk.nodes.arch.presentation.NodesFragment
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
-import dk.nodes.template.presentation.ui.base.BaseFragment
+
+import dk.nodes.template.presentation.util.ViewErrorController
 import dk.nodes.template.presentation.util.consume
 import kotlinx.android.synthetic.main.fragment_sample.*
+import javax.inject.Inject
 
-class SampleFragment : BaseFragment() {
+class SampleFragment : NodesFragment(R.layout.fragment_sample) {
 
     private val viewModel by viewModel<SampleViewModel>()
     private lateinit var adapter: SampleAdapter
+    @Inject lateinit var defaultErrorController: dagger.Lazy<ViewErrorController>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

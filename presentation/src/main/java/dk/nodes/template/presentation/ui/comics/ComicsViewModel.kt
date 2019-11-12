@@ -1,10 +1,10 @@
 package dk.nodes.template.presentation.ui.comics
 
 import androidx.lifecycle.viewModelScope
+import dk.nodes.arch.presentation.NodesViewModel
 import dk.nodes.template.domain.interactors.GetAndInsertComicsInteractor
 import dk.nodes.template.domain.interactors.isError
 import dk.nodes.template.domain.interactors.isSuccess
-import dk.nodes.template.presentation.ui.base.BaseViewModel
 import dk.nodes.template.presentation.util.SingleEvent
 import dk.nodes.template.presentation.util.ViewErrorController
 import kotlinx.coroutines.flow.collect
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ComicsViewModel @Inject constructor(private val getAndInsertComicsInteractor: GetAndInsertComicsInteractor) :
-    BaseViewModel<ComicsViewState>() {
+    NodesViewModel<ComicsViewState>() {
 
     override val initState: ComicsViewState = ComicsViewState()
 

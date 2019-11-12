@@ -1,8 +1,8 @@
 package dk.nodes.template.presentation.ui.main
 
 import androidx.lifecycle.viewModelScope
+import dk.nodes.arch.presentation.NodesViewModel
 import dk.nodes.template.presentation.nstack.NStackPresenter
-import dk.nodes.template.presentation.ui.base.BaseViewModel
 import dk.nodes.template.presentation.util.SingleEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class MainActivityViewModel @Inject constructor(
     private val nStackPresenter: NStackPresenter
-) : BaseViewModel<MainActivityViewState>() {
+) : NodesViewModel<MainActivityViewState>() {
     override val initState: MainActivityViewState = MainActivityViewState()
 
     fun checkNStack() = viewModelScope.launch {

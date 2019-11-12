@@ -1,13 +1,6 @@
 package dk.nodes.template.presentation.ui.splash
 
-import android.os.Bundle
+import dk.nodes.arch.presentation.NodesActivity
 import dk.nodes.template.presentation.R
-import dk.nodes.template.presentation.ui.base.BaseActivity
 
-class SplashActivity : BaseActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
-    }
-}
+class SplashActivity : NodesActivity(R.layout.activity_splash)

@@ -1,34 +1,29 @@
 package dk.nodes.template.presentation.ui.comics
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import dk.nodes.arch.presentation.NodesFragment
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
-import dk.nodes.template.presentation.ui.base.BaseFragment
+
 import dk.nodes.template.presentation.ui.comicdetail.ComicDetailFragmentArgs
 import dk.nodes.template.presentation.ui.shared.EndlessRecyclerViewScrollListener
+import dk.nodes.template.presentation.util.ViewErrorController
 import dk.nodes.template.presentation.util.consume
 import kotlinx.android.synthetic.main.fragment_comics.*
+import javax.inject.Inject
 
-class ComicsFragment : BaseFragment() {
+class ComicsFragment : NodesFragment(R.layout.fragment_comics) {
 
     private val viewModel by viewModel<ComicsViewModel>()
 
-    private lateinit var adapter: ComicsAdapter
+    @Inject lateinit var defaultErrorController: dagger.Lazy<ViewErrorController>
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_comics, container, false)
-    }
+    private lateinit var adapter: ComicsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
