@@ -3,7 +3,7 @@ package dk.nodes.template.presentation.ui.splash
 import androidx.lifecycle.viewModelScope
 import dk.nodes.arch.presentation.NodesViewModel
 import dk.nodes.nstack.kotlin.NStack
-import dk.nodes.nstack.kotlin.models.AppOpenResult
+import dk.nodes.nstack.kotlin.models.Result
 import dk.nodes.template.presentation.nstack.NStackPresenter
 import dk.nodes.template.presentation.util.SingleEvent
 import kotlinx.coroutines.Dispatchers
@@ -35,11 +35,11 @@ class SplashViewModel @Inject constructor(
 
             Timber.d("initAppState() - end")
             state = when (appOpenResult) {
-                is AppOpenResult.Success -> {
-                    nStackPresenter.saveAppState(appOpenResult.appUpdateResponse.data)
+                is Result.Success -> {
+                    nStackPresenter.saveAppState(appOpenResult.value.data)
                     state.copy(
                         doneLoading = true,
-                        nstackUpdateAvailable = SingleEvent(appOpenResult.appUpdateResponse.data)
+                        nstackUpdateAvailable = SingleEvent(appOpenResult.value.data.update)
                     )
                 }
                 else -> state.copy(doneLoading = true)

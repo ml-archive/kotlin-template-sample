@@ -8,6 +8,8 @@ import androidx.appcompat.app.AlertDialog
 import dk.nodes.arch.presentation.NodesFragment
 import dk.nodes.nstack.kotlin.models.AppUpdate
 import dk.nodes.nstack.kotlin.models.AppUpdateState
+import dk.nodes.nstack.kotlin.models.state
+import dk.nodes.nstack.kotlin.models.update
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.main.MainActivity
@@ -28,9 +30,9 @@ class SplashFragment : NodesFragment(R.layout.fragment_splash) {
 
     private fun handleNStack(state: SplashViewState) {
         state.nstackUpdateAvailable.consume { appUpdate ->
-            when (appUpdate.update.state) {
+            when (appUpdate.state) {
                 AppUpdateState.FORCE -> {
-                    showForceDialog(appUpdate.update)
+                    showForceDialog(appUpdate)
                 }
                 // We handle the rest in MainActivity
                 else -> {
@@ -40,7 +42,7 @@ class SplashFragment : NodesFragment(R.layout.fragment_splash) {
     }
 
     private fun handleNavigation(state: SplashViewState) {
-        if (state.doneLoading && state.nstackUpdateAvailable?.peek()?.update?.state != AppUpdateState.FORCE) {
+        if (state.doneLoading && state.nstackUpdateAvailable?.peek()?.state != AppUpdateState.FORCE) {
             showApp()
         }
     }

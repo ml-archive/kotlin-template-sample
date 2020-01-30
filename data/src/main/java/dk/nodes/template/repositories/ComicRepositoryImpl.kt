@@ -11,7 +11,7 @@ import javax.inject.Inject
 class ComicRepositoryImpl @Inject constructor(
     private val remoteDataSource: ComicApi,
     private val localDataSource: ComicDao
-): ComicRepository {
+) : ComicRepository {
     override suspend fun getComics(offset: Int, limit: Int): List<ComicEntity> {
         return remoteDataSource.getComicsCollection(offset = offset, limit = limit)
             .body()!!.data!!.results!!
