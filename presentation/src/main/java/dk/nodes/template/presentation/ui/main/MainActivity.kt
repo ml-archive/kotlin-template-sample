@@ -6,8 +6,6 @@ import android.os.Bundle
 import dk.nodes.arch.presentation.NodesActivity
 import dk.nodes.template.domain.extensions.guard
 import dk.nodes.template.presentation.R
-import dk.nodes.template.presentation.extensions.observeNonNull
-import dk.nodes.template.presentation.util.consume
 import net.hockeyapp.android.UpdateManager
 
 class MainActivity : NodesActivity(R.layout.activity_main) {
@@ -16,16 +14,7 @@ class MainActivity : NodesActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.viewState.observeNonNull(this) { state ->
-            handleNStack(state)
-        }
         savedInstanceState.guard { viewModel.checkNStack() }
-    }
-
-    private fun handleNStack(viewState: MainActivityViewState) {
-        viewState.nstackMessage.consume { showMessageDialog(it) }
-        viewState.nstackRateReminder.consume { showRateReminderDialog(it) }
-        viewState.nstackUpdate.consume { showChangelogDialog(it) }
     }
 
     override fun onDestroy() {
