@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.gfx.ribbonizer'
-apply plugin: 'dk.nodes.ci.bitrise'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -64,11 +63,8 @@ android {
             dimension "default"
             applicationIdSuffix ".staging"
             //signingConfig signingConfigs.staging
-            deploy = "debug"
-            hockeyAppId = ""
             manifestPlaceholders = [
-                    HOCKEYAPP_APP_ID: hockeyAppId,
-                    APP_NAME        : "KotlinTemplateStaging"
+                    APP_NAME: "KotlinTemplateStaging"
             ]
             buildConfigField "String", "API_URL", "\"https://gateway.marvel.com/v1/public/\""
         }
@@ -76,11 +72,8 @@ android {
             dimension "default"
             applicationIdSuffix ".production"
             //signingConfig signingConfigs.production
-            deploy = "release"
-            hockeyAppId = ""
             manifestPlaceholders = [
-                    HOCKEYAPP_APP_ID: hockeyAppId,
-                    APP_NAME        : "KotlinTemplate"
+                    APP_NAME: "KotlinTemplate"
             ]
             buildConfigField "String", "API_URL", "\"https://gateway.marvel.com/v1/public/\""
         }
@@ -100,14 +93,14 @@ repositories {
 }
 
 dependencies {
-    
+
     fileTree(dir: "libs", include: ["*.jar"])
     androidTestImplementation("androidx.test.espresso:espresso-core:${versions.espresso}", {
         exclude group: "com.android.support", module: "support-annotations"
     })
-    implementation project (':domain')
-    implementation project (':presentation')
-    implementation project (':data')
+    implementation project(':domain')
+    implementation project(':presentation')
+    implementation project(':data')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
     implementation "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlin}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}"
@@ -137,11 +130,6 @@ dependencies {
     implementation "dk.nodes.nstack:nstack-kotlin:${versions.nodes_nstack_kotlin}"
     implementation "dk.nodes.arch:base:${versions.nodes_arch}"
 
-    implementation "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
-
-    implementation "io.reactivex.rxjava2:rxandroid:${versions.rx_android}"
-    implementation "io.reactivex.rxjava2:rxjava:${versions.rx_java}"
-    implementation "io.reactivex.rxjava2:rxkotlin:${versions.rx_kotlin}"
 
     // Testing
     testImplementation "junit:junit:${versions.junit}"
