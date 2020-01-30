@@ -1,7 +1,7 @@
 package dk.nodes.template.domain.interactors
 
-import dk.nodes.template.models.entity.ComicEntity
-import dk.nodes.template.repositories.ComicRepository
+import dk.nodes.template.domain.entity.ComicEntity
+import dk.nodes.template.domain.repositories.ComicRepository
 import java.lang.RuntimeException
 import javax.inject.Inject
 

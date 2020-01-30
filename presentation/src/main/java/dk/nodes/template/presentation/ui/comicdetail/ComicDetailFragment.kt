@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import dk.nodes.arch.presentation.NodesFragment
-import dk.nodes.template.models.entity.ComicEntity
+import dk.nodes.template.domain.entity.ComicEntity
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.util.ViewErrorController

@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.snackbar.Snackbar
+import dk.nodes.template.domain.repositories.RepositoryException
 import dk.nodes.template.presentation.nstack.Translation
-import dk.nodes.template.repositories.RepositoryException
 import javax.inject.Inject
 
 class ViewErrorController @Inject constructor(val context: Context) {

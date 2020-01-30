@@ -11,6 +11,7 @@ import dk.nodes.nstack.kotlin.models.AppUpdateState
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.main.MainActivity
+import dk.nodes.template.presentation.util.consume
 
 class SplashFragment : NodesFragment(R.layout.fragment_splash) {
 
@@ -26,13 +27,14 @@ class SplashFragment : NodesFragment(R.layout.fragment_splash) {
     }
 
     private fun handleNStack(state: SplashViewState) {
-        val appUpdate = state.nstackUpdateAvailable?.consume() ?: return
-        when (appUpdate.update.state) {
-            AppUpdateState.FORCE -> {
-                showForceDialog(appUpdate.update)
-            }
-            // We handle the rest in MainActivity
-            else -> {
+        state.nstackUpdateAvailable.consume { appUpdate ->
+            when (appUpdate.update.state) {
+                AppUpdateState.FORCE -> {
+                    showForceDialog(appUpdate.update)
+                }
+                // We handle the rest in MainActivity
+                else -> {
+                }
             }
         }
     }

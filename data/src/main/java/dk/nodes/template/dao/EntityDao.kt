@@ -4,7 +4,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Update
-import dk.nodes.template.models.entity.DomainEntity
+import dk.nodes.template.domain.entity.DomainEntity
 
 interface EntityDao<E : DomainEntity> {
 

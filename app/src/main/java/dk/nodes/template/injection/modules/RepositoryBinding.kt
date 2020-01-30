@@ -5,16 +5,17 @@ import androidx.room.Room
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dk.nodes.template.network.RestPostRepository
-import dk.nodes.template.repositories.PostRepository
+import dk.nodes.template.domain.repositories.ComicRepository
+import dk.nodes.template.repositories.ComicRepositoryImpl
 import dk.nodes.template.storage.AppRoomDatabase
 import javax.inject.Singleton
 
 @Module
 abstract class RepositoryBinding {
+
     @Binds
     @Singleton
-    abstract fun bindPostRepository(repository: RestPostRepository): PostRepository
+    abstract fun bindComicRepository(repository: ComicRepositoryImpl): ComicRepository
 
     @Module
     companion object {

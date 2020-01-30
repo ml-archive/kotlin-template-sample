@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import dk.nodes.template.models.entity.DomainEntity
+import dk.nodes.template.domain.entity.DomainEntity
 import dk.nodes.template.presentation.extensions.inflate
 
 open class EntityAdapter<E : DomainEntity>(

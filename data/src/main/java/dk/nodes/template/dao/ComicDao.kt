@@ -2,7 +2,7 @@ package dk.nodes.template.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import dk.nodes.template.models.entity.ComicEntity
+import dk.nodes.template.domain.entity.ComicEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

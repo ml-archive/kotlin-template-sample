@@ -1,6 +1,6 @@
 package dk.nodes.template.presentation.ui.comicdetail
 
-import dk.nodes.template.models.entity.ComicEntity
+import dk.nodes.template.domain.entity.ComicEntity
 import dk.nodes.template.presentation.util.SingleEvent
 import dk.nodes.template.presentation.util.ViewError
 

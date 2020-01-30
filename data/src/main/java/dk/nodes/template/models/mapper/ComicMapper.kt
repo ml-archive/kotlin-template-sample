@@ -1,7 +1,7 @@
 package dk.nodes.template.models.mapper
 
 import dk.nodes.template.models.dto.Comic
-import dk.nodes.template.models.entity.ComicEntity
+import dk.nodes.template.domain.entity.ComicEntity
 
 object ComicMapper : EntityMapper<ComicEntity, Comic> {
     override fun mapToEntity(dto: Comic): ComicEntity {

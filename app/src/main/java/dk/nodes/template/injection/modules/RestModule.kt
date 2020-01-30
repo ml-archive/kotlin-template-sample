@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dk.nodes.template.BuildConfig
-import dk.nodes.template.network.Api
 import dk.nodes.template.network.ComicApi
 import dk.nodes.template.network.util.AuthInterceptor
 import dk.nodes.template.network.util.BufferedSourceConverterFactory
@@ -15,7 +14,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Date
 import java.util.concurrent.TimeUnit
@@ -86,14 +84,7 @@ class RestModule {
             .baseUrl(baseUrl)
             .addConverterFactory(BufferedSourceConverterFactory())
             .addConverterFactory(converter)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideApi(retrofit: Retrofit): Api {
-        return retrofit.create<Api>(Api::class.java)
     }
 
     @Provides

@@ -1,4 +1,4 @@
-package dk.nodes.template.models.entity
+package dk.nodes.template.domain.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
