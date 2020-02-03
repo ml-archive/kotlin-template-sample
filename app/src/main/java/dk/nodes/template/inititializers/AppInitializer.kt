@@ -14,7 +14,7 @@ interface AppInitializer {
 class AppInitializerImpl @Inject constructor() : AppInitializer {
     override fun init(app: Application) {
         NStack.translationClass = Translation::class.java
-        NStack.init(app)
+        NStack.init(app, BuildConfig.DEBUG)
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
             NStack.debugMode = true
