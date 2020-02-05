@@ -13,7 +13,7 @@ buildscript {
             junit            : '4.12',
             espresso         : '3.2.0',
             mockito          : '3.2.4',
-            nstack           : '3.2.2',
+            nstack           : '3.2.4',
             nodes_arch       : '3.0.0-alpha05',
             retrofit         : "2.7.1",
             okhttp           : "3.12.3",
