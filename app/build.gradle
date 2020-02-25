@@ -118,7 +118,6 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
     kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
 
-    implementation "net.hockeyapp.android:HockeySDK:${versions.hockey_sdk}"
     implementation "com.jakewharton.timber:timber:${versions.timber}"
 
     implementation("com.squareup.retrofit2:retrofit:${versions.retrofit}")
@@ -149,11 +148,10 @@ dependencies {
     implementation "androidx.arch.core:core-runtime:$versions.archCore"
     implementation "androidx.lifecycle:lifecycle-livedata-core:${versions.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-runtime:${versions.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-common:${versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-common-java8:${versions.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-viewmodel:${versions.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-livedata:${versions.lifecycle}"
-    kapt "androidx.lifecycle:lifecycle-compiler:${versions.lifecycle}"
     implementation "androidx.core:core-ktx:${versions.ktx}"
 
     implementation "androidx.preference:preference-ktx:1.1.0"

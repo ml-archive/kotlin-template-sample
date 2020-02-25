@@ -6,7 +6,6 @@ import android.os.Bundle
 import dk.nodes.arch.presentation.NodesActivity
 import dk.nodes.template.domain.extensions.guard
 import dk.nodes.template.presentation.R
-import net.hockeyapp.android.UpdateManager
 
 class MainActivity : NodesActivity(R.layout.activity_main) {
 
@@ -15,12 +14,6 @@ class MainActivity : NodesActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         savedInstanceState.guard { viewModel.checkNStack() }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // If we checked for hockey updates, unregister
-        UpdateManager.unregister()
     }
 
     companion object {
